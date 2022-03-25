@@ -1,20 +1,26 @@
 # Insomnia Plugin Discord Auth
 
-This plugin signs API requests using the [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519) digital signature scheme. This scheme
-is used by Discord when making WebHook requests of a Discord App server. See [Discord Security and Authorization](https://discord.com/developers/docs/interactions/receiving-and-responding#security-and-authorization).
+When making WebHook requests to a Discord App, the Discord service signs the requests using the [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519)
+digital signature scheme. See [Discord Security and Authorization](https://discord.com/developers/docs/interactions/receiving-and-responding#security-and-authorization).
+
+This Plugin makes it easy to test your Discord server, by automatically signing API requests using the Ed25519 scheme and a given secret.
+
+Discord don't share their signing secret with you, so I've also included the code required to generate a new secret/public key pair to use for testing.
+
+And some sample code that would run on your Discord server to validate the signature.
 
 ## 🚀 Installation
 
-- Access the Application / Preferences menu and then select the Plugins tab, enter the plugin name `insomnia-plugin-discord-auth` and click Install Plugin.
+- In Insomnia, Access the Application / Preferences menu and then select the Plugins tab, enter the plugin name `insomnia-plugin-discord-auth` and click Install Plugin.
 
-- After installing the plugin click on enable
+- After installing the plugin click on Enable
 
 ![Enable Plugin](imgs/plugin-install.png)
 
 ## Generating a Key Pair
 
 Discord do not share their secret key, so for testing you will need to generate your
-own key pair. A helper NodeJS app `generate-keypair.js` is included:
+own key pair. A helper NodeJS app [generate-keypair.js](./generate-keypair.js) is included:
 
 ```sh
 > node generate-keypair.js
@@ -48,9 +54,12 @@ You can see from the Timeline view that the plug-in is successfully adding the s
 
 ## Example Bot Code
 
-I'm also including some sample code for the Bot server receiving this request.
+I'm also including some sample code for the Bot server receiving this request. It requires 
+the testing secret key that you generated above, and also the secret from the Discord App web pages. You
+then run it with an environment variable of `ENV=DEV` for testing, or remove the variable for production.
+
 ```diff
-- Sorry - This is cut-paste from my production code, and hasn't been run/tested
+- Sorry - This is cut-paste from my app code, and hasn't been run/tested as a standalone app
 ```
 
 ```javascript
@@ -78,8 +87,7 @@ const InteractionType = {
     ApplicationCommand: 2
 };
 
-// Use the Raw handler, as we need to create/compare
-// the signature of the raw body
+// Use the Raw handler, as we need to create/compare the signature of the raw body
 app.use(express.raw({"type":"*/*"}));
 
 // Main POST handler
@@ -126,7 +134,7 @@ async discordHandler(requestBody, signatureEd25519, signatureTimestamp){
     }
 
     if (process.env.ENV == "DEV") {
-        // ############## THE DEVELOPMENT PUBLIC KEY YOIU GENERATED  ABOVE #########################
+        // ############## THE DEVELOPMENT PUBLIC KEY YOU GENERATED  ABOVE ##########################
         var signaturePublicKey = "07f3be2df0be6b4befca007f190468c3c1a640dbb4d50beaa8d98e4671c0e9db";
     } else {
         // ############## THE PRODUCTION PUBLIC KEY FROM DISCORD  ##################################
