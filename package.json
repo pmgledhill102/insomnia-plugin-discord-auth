@@ -5,13 +5,30 @@
     "name": "discord-auth",
     "displayName": "Discord Auth PlugIn",
     "description": "Insomnia PlugIn to sign requests using ED25519 scheme as utilised by Discord",
-    "publisher" : {
+    "publisher": {
       "name": "Paul Gledhill"
-    }
+    },
+    "license": "MIT",
+    "keywords": [
+      "insomnia",
+      "plugin",
+      "discord",
+      "ed25519"
+    ]
   },
   "main": "discord-auth.js",
   "dependencies": {
     "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.1"
-  }
+  },
+  "description": "An Insomnia Plugin to inject an ED25519 signature into a request, to support Discord server development",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmgledhill102/insomnia-plugin-discord-auth.git"
+  },
+  "author": "Paul Gledhill",
+  "bugs": {
+    "url": "https://github.com/pmgledhill102/insomnia-plugin-discord-auth/issues"
+  },
+  "homepage": "https://github.com/pmgledhill102/insomnia-plugin-discord-auth#readme"
 }

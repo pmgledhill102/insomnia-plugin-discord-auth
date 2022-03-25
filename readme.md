@@ -54,9 +54,7 @@ You can see from the Timeline view that the plug-in is successfully adding the s
 
 ## Example Bot Code
 
-I'm also including some sample code for the Bot server receiving this request. It requires 
-the testing secret key that you generated above, and also the secret from the Discord App web pages. You
-then run it with an environment variable of `ENV=DEV` for testing, or remove the variable for production.
+I'm also including some sample code for the Bot server receiving this request. It requires the testing secret key that you generated above, and also the secret from the Discord App web pages. You then run it with an environment variable of `ENV=DEV` for testing, or remove the variable for production.
 
 ```diff
 - Sorry - This is cut-paste from my app code, and hasn't been run/tested as a standalone app
