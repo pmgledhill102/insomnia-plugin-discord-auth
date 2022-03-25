@@ -1,0 +1,14 @@
+{
+  "name": "insomnia-plugin-discord-auth",
+  "version": "1.0.0",
+  "private": true,
+  "insomnia": {
+    "name": "discord-auth",
+    "description": ""
+  },
+  "main": "discord-auth.js",
+  "dependencies": {
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1"
+  }
+}
