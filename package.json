@@ -1,10 +1,13 @@
 {
   "name": "insomnia-plugin-discord-auth",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.0.1",
   "insomnia": {
     "name": "discord-auth",
-    "description": ""
+    "displayName": "Discord Auth PlugIn",
+    "description": "Insomnia PlugIn to sign requests using ED25519 scheme as utilised by Discord",
+    "publisher" : {
+      "name": "Paul Gledhill"
+    }
   },
   "main": "discord-auth.js",
   "dependencies": {
